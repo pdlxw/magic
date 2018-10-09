@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>123</title> 
+    <script type="text/javascript" src="../script/jquery/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="../script/knockout/knockout-3.5.0rc2.debug.js"></script>
+    <script type="text/javascript" src="knockouttest.js"></script>
+</head>
+<body>
+    <div id="t1">
+        <p>Using computed observables</p>
+        firstName:<input type="text" data-bind="value: firstName">
+        lastName:<input type="text" data-bind="value: lastName">
+        The name is <span data-bind="text: fullName"></span>        
+    </div>
+    <div id="t2">
+        <div data-bind="html: details"></div>
+    </div>
+
+    <div id="t3">
+        <ul data-bind="foreach: { data: myItems, afterAdd: yellowFadeIn }">
+            <li data-bind="text: $data"></li>
+        </ul>
+         
+        <button data-bind="click: addItem">Add</button>
+    </div>
+</body>
+</html>
