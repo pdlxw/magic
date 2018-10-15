@@ -26,5 +26,90 @@
          
         <button data-bind="click: addItem">Add</button>
     </div>
+
+    <div id="t4">
+        <p>The "if" binding</p>
+        <ul data-bind="foreach: planets">
+            <li>
+                Planet: <b data-bind="text: name"> </b>
+                <div data-bind="if: capital">
+                    Capital: <b data-bind="text: capital.cityName"> </b>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div id="t5">
+        <form data-bind="submit: getTweets">
+            Twitter account:
+            <input data-bind="value: twitterName" />
+            <button type="submit">Get tweets</button>
+        </form>
+            
+        <div data-bind="with: resultData">
+            <h3>Recent tweets fetched at <span data-bind="text: retrievalDate"> </span></h3>
+            <ol data-bind="foreach: topTweets">
+                <li data-bind="text: text"></li>
+            </ol>
+            
+        <button data-bind="click: clearResults">Clear tweets</button> 
+        </div>
+        
+    </div>
+
+    <div id="t6">
+        <ul data-bind="foreach: places">
+            <li>
+                <span data-bind="text: $data"></span>
+                <button data-bind="click: $parent.removePlace">Remove</button>
+            </li>
+        </ul>
+    </div>
+
+    <div id="t7">
+        <p>Send me spam: <input type="checkbox" data-bind="checked: wantsSpam" /></p>
+        <div data-bind="visible: wantsSpam">
+        Preferred flavors of spam:
+        <div><input type="checkbox" value="cherry" data-bind="checked: spamFlavors" /> Cherry</div>
+        <div><input type="checkbox" value="almond" data-bind="checked: spamFlavors" /> Almond</div>
+        <div><input type="checkbox" value="Monosodium Glutamate" data-bind="checked: spamFlavors" /> Monosodium Glutamate</div>
+        </div>
+        <button data-bind="click: showselected">show</button>
+    </div>
+
+    <div id="t8">
+        <p>
+            Choose some countries you would like to visit:
+            <select data-bind="options: availableCountries" size="5" multiple="true"></select>
+        </p>
+    </div>
+
+    <div id="t9">
+        <p>
+            Your country:
+            <select data-bind="options: availableCountries,
+                               optionsText: 'countryName',
+                               value: selectedCountry,
+                               optionsCaption: 'Choose...'"></select>
+        </p>
+         
+        <div data-bind="visible: selectedCountry"> <!-- Appears when you select something -->
+            You have chosen a country with population
+            <span data-bind="text: selectedCountry() ? selectedCountry().countryPopulation : 'unknown'"></span>.
+        </div>
+    </div>
+
+    <div id="t10">
+        <h2>Participants</h2>
+        Here are the participants:
+        <div data-bind="template: { name: 'person-template', data: buyer }"></div>
+        <div data-bind="template: { name: 'person-template', data: seller }"></div>
+    </div>
+
+    <script type="text/html" id="person-template">
+        <h3 data-bind="text: name"></h3>
+        <p>Credits: <span data-bind="text: credits"></span></p>
+    </script>
+
 </body>
 </html>
